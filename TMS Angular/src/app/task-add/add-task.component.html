@@ -1,0 +1,53 @@
+<h3>Create Task</h3>
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4" >
+    <div [hidden]="submitted" style="width: 400px;">
+      <form [formGroup]="tasksaveform" #savetask (ngSubmit)="saveTask(saveTask)">
+          <div class="form-group">
+              <label for="name">Task Name</label>
+              <input type="text" class="form-control"  formControlName="task_name" data-toggle="tooltip" 
+                 data-placement="right" title="Enter Task Name" required="required">
+          </div>
+  
+          <div class="form-group">
+              <label for="name">Task Time</label>
+              <input type="text" class="form-control" formControlName="task_time" 
+                data-toggle="tooltip" data-placement="right" title="Enter Task Time" required="required">
+          </div>
+  
+          <div class="form-group">
+            <label for="name">Task Group</label>
+            <input type="text" class="form-control" formControlName="task_group" 
+              data-toggle="tooltip" data-placement="right" title="Enter Task Group" required="required">
+          </div>
+
+          <div class="form-group">
+            <label for="name">Task Assignee</label>
+            <input type="text" class="form-control" formControlName="task_assignee" 
+              data-toggle="tooltip" data-placement="right" title="Enter Task Assignee" required="required">
+          </div>
+
+          <div class="form-group">
+            <label for="name">Parent Task</label>
+            <input type="text" class="form-control" formControlName="task_parent" 
+              data-toggle="tooltip" data-placement="right" title="Enter Parent Task">    
+          </div>
+  
+          <div class="form-group">
+            <label for="name">Is Task Finished</label>
+            <input type="checkbox" class="form-control" formControlName="task_finish" 
+            data-toggle="tooltip" data-placement="right" title="Is Task Finished">
+          </div>
+
+          
+          
+          <button type="submit" style="width: 100%;" class="btn btn-success">Submit</button>
+      </form>
+  </div>
+  </div>
+  <div class="col-sm-4"></div>
+</div>
+
+
+

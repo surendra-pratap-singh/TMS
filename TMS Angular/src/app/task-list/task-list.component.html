@@ -1,0 +1,114 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+      <h1 style="text-align: center">Tasks</h1><br>
+      <div class="row" [hidden]="!deleteMessage">
+           
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                        <div class="alert alert-info alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <strong>Task Data Deleted</strong>
+                        </div>
+                </div>
+                <div class="col-sm-4"></div>
+        </div>           
+    </div>
+
+  
+  <div class="panel-body">
+      <table  class="table table-hover table-sm" datatable [dtOptions]="dtOptions"
+      [dtTrigger]="dtTrigger"  >
+          <thead class="thead-light">
+              <tr>
+                  <th>Task Id</th>
+                  <th>Task Name</th>
+                  <th>Task Time</th>
+                  <th>Task Group</th>
+                  <th>Task Assignee</th>
+                  <th>Parent Task</th>
+                  <th>Task Finished</th>
+                  <th>Action</th>
+                  
+              </tr>
+          </thead>
+          <tbody>
+               <tr *ngFor="let task of tasks ">
+                  <td>{{task.id}}</td>
+                  <td>{{task.taskName}}</td>
+                  <td>{{task.timeSpentOnTask}}</td>
+                  <td>{{task.taskGroup}}</td>
+                  <td>{{task.assignee}}</td>
+                  <td>{{task.parentTask}}</td>
+                  <td>{{task.finished}}</td>
+                  <td><button (click)="deleteTask(task.id)" class='btn btn-primary'><i class="fa fa-futboll-0">Delete</i></button>&nbsp;
+                    <button (click)="updateTask(task.id)" class='btn btn-info'
+                    data-toggle="modal" data-target="#myModal">Update</button>
+                  </td>
+                </tr> 
+          </tbody><br>
+      </table>
+  </div>
+</div> 
+
+<div class="modal" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+                <form [formGroup]="taskupdateform" #updtask (ngSubmit)="updateStu(updtask)">
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title" style="text-align: center">Update Task</h4>
+              
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body"  >
+                <div [hidden]="isupdated">
+
+                    <input type="hidden" class="form-control"  formControlName="id" [(ngModel)]="task.id">
+                            <div class="form-group">
+                                <label for="name">Task Name</label>
+                                <input type="text" class="form-control"  formControlName="task_name" [(ngModel)]="task.taskName"  >
+                            </div>
+                    
+                            <div class="form-group">
+                                <label for="name">Task Time</label>
+                                <input type="text" class="form-control" formControlName="task_time" [(ngModel)]="task.timeSpentOnTask">
+                            </div>
+
+                            <div class="form-group">
+                              <label for="name">Task Group</label>
+                              <input type="text" class="form-control" formControlName="task_group" [(ngModel)]="task.taskGroup">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Task Assignee</label>
+                                <input type="text" class="form-control" formControlName="task_assignee" [(ngModel)]="task.assignee">
+                            </div>
+
+                            <div class="form-group">
+                              <label for="name">Parent Task</label>
+                              <input type="text" class="form-control" formControlName="task_parent" [(ngModel)]="task.parentTask">
+                            </div>
+
+                            <div class="form-group">
+                              <label for="name">Task Finished</label>
+                              <input type="checkbox" class="form-control" formControlName="task_finished" [(ngModel)]="task.finished">
+                            </div>
+
+                  </div>  
+                  <div [hidden]="!isupdated">
+                      <h4>Task Detail Updated!</h4>
+                  </div>        
+                    
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer" >
+              <button type="submit" class="btn btn-success" [hidden]="isupdated">Update</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="changeisUpdate()">Close</button>
+            </div>
+            
+        </form>
+          </div>
+        </div>
+      </div>
